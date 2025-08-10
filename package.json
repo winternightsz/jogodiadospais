@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "scripts": {
         "start": "parcel index.html",
-        "build": "parcel build index.html --public-url ./"
+        "build": "parcel build index.html --public-url ./",
+        "build:pages": "parcel build index.html --public-url ./ --dist-dir docs"
     },
     "keywords": [],
     "author": "",
