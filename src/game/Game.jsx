@@ -134,13 +134,13 @@ export default function Game() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <Header />
       
-      {/* Layout responsivo com grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+      {/* Layout responsivo com stack vertical em mobile e grid em desktop */}
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6">
         {/* Painel principal (tabuleiro) */}
-        <div className="md:col-span-8">
+        <div className="lg:col-span-8 order-1">
           <WordSearchGrid
             grid={grid}
             words={words}
@@ -154,7 +154,7 @@ export default function Game() {
         </div>
 
         {/* Painel lateral (controles e lista) */}
-        <div className="md:col-span-4 space-y-6">
+        <div className="lg:col-span-4 order-2 space-y-4 sm:space-y-6">
           <Controls
             difficulty={difficulty}
             onDifficultyChange={handleDifficultyChange}
@@ -180,25 +180,25 @@ export default function Game() {
 
       {/* Modal de vitória */}
       {gameStatus === 'won' && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-auto text-center">
-            <div className="mb-6">
-              <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
+          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-md w-full mx-auto text-center">
+            <div className="mb-4 sm:mb-6">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-emerald-100 dark:bg-emerald-800 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
                 FELIZ DIA DOS PAIS!
               </h2>
-              <p className="text-slate-600 dark:text-slate-400">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                 Você encontrou todas as {words.length} palavras!
               </p>
             </div>
             
             <button
               onClick={handlePlayAgain}
-              className="w-full px-6 h-12 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 transition-colors duration-200 font-semibold"
+              className="w-full px-4 sm:px-6 h-10 sm:h-12 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 transition-colors duration-200 font-semibold text-sm sm:text-base mobile-touch-friendly"
             >
               Jogar Novamente
             </button>

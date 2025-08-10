@@ -25,9 +25,9 @@ export default function WordSearchGrid({
   // Função para obter classes CSS de uma célula
   const getCellClasses = (row, col) => {
     let classes = [
-      'w-10 h-10 border border-slate-300 dark:border-slate-600',
+      'w-8 h-8 sm:w-10 sm:h-10 border border-slate-300 dark:border-slate-600',
       'flex items-center justify-center',
-      'text-lg font-bold cursor-pointer',
+      'text-sm sm:text-lg font-bold cursor-pointer',
       'transition-all duration-200',
       'select-none'
     ];
@@ -170,6 +170,12 @@ export default function WordSearchGrid({
     }
   };
 
+  // Adicionar suporte para touch events
+  const handleTouchStart = (e, row, col) => {
+    e.preventDefault();
+    handleCellClick(row, col);
+  };
+
   // Navegação por teclado
   const handleKeyDown = (e, row, col) => {
     e.preventDefault();
@@ -224,12 +230,12 @@ export default function WordSearchGrid({
   }
 
   return (
-    <div className="bg-white dark:bg-slate-800/70 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-6">
-      <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-4 text-center">
+    <div className="bg-white dark:bg-slate-800/70 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-3 sm:p-4 md:p-6">
+      <h3 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3 sm:mb-4 text-center">
         Modo: {difficulty === 'easy' ? 'Fácil' : difficulty === 'normal' ? 'Normal' : 'Difícil'}
       </h3>
       
-      <div className="mb-4 text-sm text-slate-600 dark:text-slate-400 text-center">
+      <div className="mb-3 sm:mb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400 text-center">
         {!firstClick ? (
           "Clique na primeira letra da palavra"
         ) : (
@@ -249,12 +255,13 @@ export default function WordSearchGrid({
             Array.isArray(row) ? row.map((cell, colIndex) => (
               <div
                 key={`${rowIndex}-${colIndex}`}
-                className={getCellClasses(rowIndex, colIndex)}
+                className={`${getCellClasses(rowIndex, colIndex)} mobile-touch-friendly`}
                 aria-label={`linha ${rowIndex + 1}, coluna ${colIndex + 1}, letra ${cell}`}
                 tabIndex={0}
                 onClick={() => handleCellClick(rowIndex, colIndex)}
                 onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
                 onFocus={() => setFocusedCell({ row: rowIndex, col: colIndex })}
+                onTouchStart={(e) => handleTouchStart(e, rowIndex, colIndex)}
               >
                 {cell}
               </div>
@@ -264,7 +271,7 @@ export default function WordSearchGrid({
       </div>
       
       {selectionPath && Array.isArray(selectionPath) && selectionPath.length > 0 && (
-        <div className="mt-4 text-sm text-slate-600 dark:text-slate-400 text-center">
+        <div className="mt-3 sm:mt-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400 text-center">
           {selectionPath.map(pos => grid[pos.row] && grid[pos.row][pos.col] ? grid[pos.row][pos.col] : '').join('')}
         </div>
       )}

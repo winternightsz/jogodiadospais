@@ -22,3 +22,27 @@
 .dark .elevated {
   @apply border-slate-700;
 }
+
+/* Melhorias para dispositivos móveis */
+@media (max-width: 640px) {
+  /* Prevenir zoom em inputs em iOS */
+  input, textarea, select {
+    font-size: 16px;
+  }
+  
+  /* Melhorar área de toque para botões */
+  button {
+    min-height: 44px;
+  }
+  
+  /* Ajustar espaçamento para telas pequenas */
+  .mobile-touch-friendly {
+    touch-action: manipulation;
+  }
+}
+
+/* Melhorar scroll em dispositivos móveis */
+.mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}

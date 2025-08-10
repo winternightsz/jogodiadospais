@@ -63,19 +63,19 @@ export default function WordsEditorModal({ isOpen, onClose, words, onSave }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4">
       <div 
         ref={modalRef}
-        className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 w-full max-w-md mx-auto"
+        className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-4 sm:p-6 w-full max-w-md mx-auto max-h-[90vh] overflow-y-auto"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
           <h2 
             id="modal-title"
-            className="text-xl font-bold text-slate-900 dark:text-slate-100"
+            className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100"
           >
             Editar Palavras
           </h2>
@@ -92,12 +92,12 @@ export default function WordsEditorModal({ isOpen, onClose, words, onSave }) {
 
         <p 
           id="modal-description"
-          className="text-slate-600 dark:text-slate-400 mb-4"
+          className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-3 sm:mb-4"
         >
           Digite uma palavra por linha. As palavras serão normalizadas automaticamente (maiúsculas, sem acentos).
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           <div>
             <label htmlFor="words-textarea" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
               Lista de Palavras
@@ -107,24 +107,24 @@ export default function WordsEditorModal({ isOpen, onClose, words, onSave }) {
               id="words-textarea"
               value={editedWords}
               onChange={(e) => setEditedWords(e.target.value)}
-              className="w-full h-56 rounded-xl border border-slate-300 dark:border-slate-600 p-3 text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+              className="w-full h-40 sm:h-56 rounded-xl border border-slate-300 dark:border-slate-600 p-3 text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-sm sm:text-base"
               placeholder="PAI&#10;AMOR&#10;FAMILIA&#10;CARINHO&#10;ABRACO"
               disabled={isSubmitting}
             />
           </div>
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 h-10 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 transition-colors duration-200"
+              className="flex-1 px-3 sm:px-4 h-10 rounded-xl border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 transition-colors duration-200 text-sm sm:text-base mobile-touch-friendly"
               disabled={isSubmitting}
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 h-10 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 disabled:opacity-50 transition-colors duration-200"
+              className="flex-1 px-3 sm:px-4 h-10 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 disabled:opacity-50 transition-colors duration-200 text-sm sm:text-base mobile-touch-friendly"
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Salvando...' : 'Salvar'}
