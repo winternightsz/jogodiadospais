@@ -189,7 +189,7 @@ export default function Game() {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-                Parabéns!
+                FELIZ DIA DOS PAIS!
               </h2>
               <p className="text-slate-600 dark:text-slate-400">
                 Você encontrou todas as {words.length} palavras!
