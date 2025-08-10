@@ -170,11 +170,7 @@ export default function WordSearchGrid({
     }
   };
 
-  // Adicionar suporte para touch events
-  const handleTouchStart = (e, row, col) => {
-    e.preventDefault();
-    handleCellClick(row, col);
-  };
+  // Touch events are handled automatically by the browser's click event synthesis
 
   // Navegação por teclado
   const handleKeyDown = (e, row, col) => {
@@ -261,7 +257,6 @@ export default function WordSearchGrid({
                 onClick={() => handleCellClick(rowIndex, colIndex)}
                 onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
                 onFocus={() => setFocusedCell({ row: rowIndex, col: colIndex })}
-                onTouchStart={(e) => handleTouchStart(e, rowIndex, colIndex)}
               >
                 {cell}
               </div>
