@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@keyframes pop {
+  0% {
+    transform: scale(.95);
+    opacity: .7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop {
+  animation: pop .18s ease-out both;
+}
+
+.elevated {
+  @apply shadow-lg border border-slate-200;
+}
+
+.dark .elevated {
+  @apply border-slate-700;
+}
